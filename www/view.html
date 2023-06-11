@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View photos by id</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    Enter id:<input id="id" type="text"/>
+    <button id="get">Get Image</button>
+    <script>
+        const id = document.querySelector('#id');
+        const get = document.querySelector('#get');
+        get.onclick = async()=>{
+            const reply = await axios.post('/getphoto', {id:id.value});
+            const image = document.createElement('img');
+            image.src = reply.data.image;
+            document.body.append(image);
+        }
+    </script>
+</body>
+</html>
